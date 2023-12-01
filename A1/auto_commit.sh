@@ -12,9 +12,6 @@ current_date="$start_date"
 while [ "$current_date" != "$end_date" ]; do
   # Получение изменений с удаленного репозитория и интеграция их с локальными изменениями
   git pull origin main
-
-  # Удаление всех файлов в репозитории
-  git rm -r --cached .
   
   # Создание новых файлов (или ваших изменений)
   echo "Some content" > "file.txt"
@@ -22,7 +19,7 @@ while [ "$current_date" != "$end_date" ]; do
   # Добавление всех изменений
   git add .
   
-  # Создание коммита с указанием даты
+  # Создание коммита с указанием даты в нужном формате
   git commit --date="$current_date" -m "Auto commit: $current_date"
   
   # Отправка изменений на сервер с использованием --force
