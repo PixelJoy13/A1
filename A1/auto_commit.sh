@@ -23,8 +23,7 @@ while [ "$current_date" != "$end_date" ]; do
   git add .
   
   # Создание коммита с указанием даты
-  export GIT_COMMITTER_DATE="$(date -jf "%Y-%m-%d" -v+1d "$current_date" +"%Y-%m-%d %T")"
-  git commit -m "Auto commit: $current_date"
+  git commit --date="$current_date" -m "Auto commit: $current_date"
   
   # Отправка изменений на сервер с использованием --force
   git push origin main --force
