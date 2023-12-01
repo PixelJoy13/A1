@@ -32,6 +32,6 @@ while [ "$current_date" != "$end_date" ]; do
   sleep 60
   
   # Инкрементирование текущей даты
-  current_date=$(date -d "$current_date + 1 day" "+%Y-%m-%d")
+  current_date=$(date -v+1d -jf "%Y-%m-%d" "$current_date" "+%Y-%m-%d")
 done
 
