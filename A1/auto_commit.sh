@@ -25,8 +25,8 @@ while [ "$current_date" != "$end_date" ]; do
   # Создание коммита с указанием даты
   git commit --date="$current_date" -m "Auto commit: $current_date"
   
-  # Отправка изменений на сервер
-  git push origin main
+  # Отправка изменений на сервер с использованием --force
+  git push origin main --force
   
   # Пауза в 1 минуту
   sleep 60
