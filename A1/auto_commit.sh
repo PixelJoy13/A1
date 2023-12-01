@@ -10,6 +10,9 @@ end_date="2023-12-20"
 current_date="$start_date"
 
 while [ "$current_date" != "$end_date" ]; do
+  # Получение изменений с удаленного репозитория
+  git pull origin main
+
   # Удаление всех файлов в репозитории
   git rm -r --cached .
   
@@ -22,7 +25,7 @@ while [ "$current_date" != "$end_date" ]; do
   # Создание коммита с указанием даты
   git commit --date="$current_date" -m "Auto commit: $current_date"
   
-  # Пуш изменений с указанием origin и main
+  # Отправка изменений на сервер
   git push origin main
   
   # Пауза в 1 минуту
