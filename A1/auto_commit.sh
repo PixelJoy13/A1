@@ -15,6 +15,9 @@ while [ "$current_date" != "$end_date" ]; do
 
   # Удаление всех файлов в репозитории
   git rm -r --cached .
+
+  # Если файл auto_commit.sh был изменен, отменяем изменения
+  git checkout -- "A1/auto_commit.sh"
   
   # Создание новых файлов (или ваших изменений)
   echo "Some content" > "file.txt"
@@ -23,15 +26,16 @@ while [ "$current_date" != "$end_date" ]; do
   git add .
   
   # Создание коммита с указанием даты
-  git commit --date="$current_date" -m "Auto commit: $current_date"
+  export GIT_COMMITTER_DATE="$current_date"
+  git commit -m "Auto commit: $current_date"
   
   # Отправка изменений на сервер с использованием --force
   git push origin main --force
   
-  # Пауза в 1 минуту
-  sleep 60
+  # Пауза от 45 секунд до 1 минуты 30 секунд
+  sleep $((45 + RANDOM % 46))
   
   # Инкрементирование текущей даты
-  current_date=$(date -v+1d -jf "%Y-%m-%d" "$current_date" "+%Y-%m-%d")
+  current_date=$(date -jf "%Y-%m-%d" -v+1d "$current_date" "+%Y-%m-%d")
 done
 
